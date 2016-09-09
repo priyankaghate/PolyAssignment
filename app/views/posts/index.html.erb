@@ -1,0 +1,12 @@
+
+<div class="list-group">
+	<h1 class="list-group-item-heading"><center>List Of Posts</center></h1>
+	<% @posts.each do |post| %>
+		<div class="list-group-item">
+			<h4 class: 'list-group-item-heading'><%=link_to post.title, post_path(post) %></h4>
+			<p class="list-group-item-text"><%= post.content %></p>
+
+		</div>
+	<%end%>	
+	
+</div>

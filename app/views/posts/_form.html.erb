@@ -1,0 +1,32 @@
+<%=form_for @post do |f| %>
+	<%if @post.errors.any? %>
+		<div class="error_explanation">
+			<h3><%=pluralize(@post.errors.count, "error")%> post not saved.</h3>
+			<ul>
+		      <% @post.errors.full_messages.each do |message| %>
+		        <li><%= message %></li>
+		      <% end %>
+		    </ul>
+		</div>
+	<%end%>
+
+	<div class="form-group">
+	    <%= f.label :title %>
+	    <%= f.text_field :title,  class: "form-control" %>
+	</div>
+	<div class="form-group">
+	    <%= f.label :content %>
+	    <%= f.text_area :content,  class: "form-control" %>
+	</div>
+  
+  	<%#= f.fields_for :comments do |c| %>
+	    <%#= render 'comment_fields', :f=>c %>
+	<%#end%>
+
+  	<%#= link_to_add_fields "Comment", f, :comments %>
+
+	<div class="form-group">
+	  <%= f.submit(class: "btn btn-default") %>
+	</div>
+
+<%end%>
