@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
 
   resources :posts do
-    resources :comments, module: :posts
+    resources :comments 
   end
+
+  resources :comments do
+    resources :comments 
+  end
+
+
   #resources :comments
   root 'posts#index'
   # The priority is based upon order of creation: first created -> highest priority.

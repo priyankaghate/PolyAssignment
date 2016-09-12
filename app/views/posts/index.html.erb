@@ -5,7 +5,14 @@
 		<div class="list-group-item">
 			<h4 class: 'list-group-item-heading'><%=link_to post.title, post_path(post) %></h4>
 			<p class="list-group-item-text"><%= post.content %></p>
-
+			<%for comment in post.comments %>
+				Comment:<p class="list-group-item-text"><%= comment.content %></p>
+				<%for c in comment.comments %>
+				 Sub-Comment:
+					<p class="list-group-item-text"><%= comment.content %></p>
+				<%end%>
+			<%end%>
+			<%=link_to "Delete", post_path(post), method: :delete, data: {confirm: "Are You Sure?"}%>
 		</div>
 	<%end%>	
 	

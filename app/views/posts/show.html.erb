@@ -1,12 +1,27 @@
 <div class="container">
-	<div class="jumbotron">
-	  <center>
+  <div class="jumbotron">
 		<h1><%= @post.title %></h1>
 		<p>
 			<%= @post.content %>
 		</p>
-	  </center>
-	  <%=render 'comments/form', :commentable => @post %>
-	  <%#=link_to "Comment", new_comment_path, class: "btn btn-primary"%>
-	</div>
+		<%for comment in @post.comments %>
+		 
+			<strong>Comment:</strong>
+			
+				<%= comment.content %>
+				<%=link_to "Comment", new_comment_comment_path(comment), class: "btn btn-info"%>
+
+					<div>
+					<% for c in comment.comments %>
+					    
+					    <strong>Sub-Comment:</strong>
+							<%= c.content %><br> 
+						
+					<%end%>
+					</div>
+				
+		<%end%>
+
+	  <%=link_to "Comment", new_post_comment_path(@post), class: "btn btn-primary"%>
+  </div>
 </div>

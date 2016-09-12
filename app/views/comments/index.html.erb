@@ -1,13 +1,29 @@
-<div class="list-group">
-	<h1 class="list-group-item-heading"><center>List Of Posts</center></h1>
-	<% @comments.each do |comment| %>
-		<div class="list-group-item">
-			<!--<h4 class: 'list-group-item-heading'><%= comment.title %></h4> -->
-			<p class="list-group-item-text"><%= comment.content %></p>
+<div class="container">
+	<%=link_to "New Post", new_post_path, class: "pull-right"%>
+	<div class="jumbotron">
 
-		</div>
-	<%end%>	
-	
+		<%cntr=0%>
+	    <%for comment in @commentable.comments %>
+	    	<%cntr+=1%>
+	    	<% if comment.commentable_type=="Post" && cntr==1%>
+				<h1><%= @commentable.title %></h1>
+				<p>
+					<%= @commentable.content %>
+				</p>
+				
+			<%end%>
+			<%if comment.commentable_type=="Comment" %>
+				Comment To Comment
+			<%end%>
+			<strong>Comment:<%=cntr%></strong>
+			<p>
+				<%= comment.content %>
+				<%=link_to "Comment", new_comment_comment_path(comment), class: "btn btn-info"%>
+			</p>
+		<%end%>
+		<div>
+	  	<%=link_to "Comment", new_post_comment_path(@commentable), class: "btn btn-primary"%>
+	  	</div>
+	</div>
 </div>
 
-	
